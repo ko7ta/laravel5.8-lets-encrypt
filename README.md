@@ -1,21 +1,17 @@
 # Let's Encrypt Laravel
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/daanra/laravel-lets-encrypt.svg?style=flat-square)](https://packagist.org/packages/daanra/laravel-lets-encrypt)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/daanra/laravel-lets-encrypt/run-tests?label=tests)](https://github.com/daanra/laravel-lets-encrypt/actions?query=workflow%3Arun-tests+branch%3Amaster)
-[![Total Downloads](https://img.shields.io/packagist/dt/daanra/laravel-lets-encrypt.svg?style=flat-square)](https://packagist.org/packages/daanra/laravel-lets-encrypt)
-
 A Laravel package for easily generating and renewing SSL certificates using Let's Encrypt. This package is especially useful if
 you have a Laravel application that manages the SSL certificates of many domains. This package is **not** recommended if
 you just need to generate a single SSL certificate for your application.
 
-This package is essentially a Laravel-friendly wrapper around [Acme PHP](https://github.com/acmephp/acmephp). 
+This package is essentially a Laravel-friendly wrapper around [Acme PHP](https://github.com/acmephp/acmephp).
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require daanra/laravel-lets-encrypt
+composer require ko7ta/laravel-lets-encrypt
 ```
 
 Publish the configuration file and the migration:
@@ -94,7 +90,7 @@ This will automatically renew every certificate that is older than 60 days, ensu
 
 ## Configuration
 
-By default this package will use Let's Encrypt's staging server to issue certificates. You should set: 
+By default this package will use Let's Encrypt's staging server to issue certificates. You should set:
 ```bash
 LETS_ENCRYPT_API_URL=https://acme-v02.api.letsencrypt.org/directory
 ```
@@ -102,7 +98,7 @@ in the `.env` file of your production server.
 
 
 By default, this package will attempt to validate a certificate using [a HTTP-01 challenge](https://letsencrypt.org/docs/challenge-types/).
-For this reason, a file will be temporarily stored in your application's storage directory under the path 
+For this reason, a file will be temporarily stored in your application's storage directory under the path
 `app/public/.well-known/acme-challenge/<CHALLENGE_TOKEN>`. You can customise this behavior by setting a custom
 `PathGenerator` class in your config under `path_generator`. Note that Let's Encrypt expects the following path:
 ```bash
@@ -127,12 +123,11 @@ Please see [CONTRIBUTING](CONTRIBUTING.md) for details.
 
 ## Security
 
-If you discover any security related issues, please email daanraatjes+dev@gmail.com instead of using the issue tracker.
+If you discover any security related issues, please email kostenko.antony@gmail.com instead of using the issue tracker.
 
 ## Credits
 
-- [Daan Raatjes](https://github.com/Daanra)
-- [All Contributors](../../contributors)
+- [ko7ta](https://github.com/ko7ta)
 
 ## License
 

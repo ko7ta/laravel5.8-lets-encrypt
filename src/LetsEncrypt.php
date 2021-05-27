@@ -178,8 +178,12 @@ class LetsEncrypt
             $keyPairGenerator = new KeyPairGenerator();
             $keyPair = $keyPairGenerator->generateKeyPair();
 
-            File::ensureDirectoryExists(File::dirname($publicKeyPath));
-            File::ensureDirectoryExists(File::dirname($privateKeyPath));
+            if (!File::exists($publicKeyPath)) {
+                File::makeDirectory(File::dirname($publicKeyPath), 0755, true, true);
+            }
+            if (!File::exists($privateKeyPath)) {
+                File::makeDirectory(File::dirname($privateKeyPath), 0755, true, true);
+            }
 
             file_put_contents($publicKeyPath, $keyPair->getPublicKey()->getPEM());
             file_put_contents($privateKeyPath, $keyPair->getPrivateKey()->getPEM());

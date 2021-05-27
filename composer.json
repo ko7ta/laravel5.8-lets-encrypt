@@ -1,20 +1,20 @@
 {
-    "name": "daanra/laravel-lets-encrypt",
+    "name": "ko7ta/laravel5.8-lets-encrypt",
     "description": "A Laravel package to easily generate SSL certificates using Let's Encrypt",
     "keywords": [
-        "daanra",
+        "ko7ta",
         "lets",
         "encrypt",
         "ssl",
         "certificate",
         "laravel"
     ],
-    "homepage": "https://github.com/daanra/laravel-lets-encrypt",
+    "homepage": "https://github.com/ko7ta/laravel5.8-lets-encrypt",
     "license": "MIT",
     "authors": [
         {
-            "name": "Daan Raatjes",
-            "email": "daanraatjes+dev@gmail.com"
+            "name": "ko7ta",
+            "email": "kostenko.antony@gmail.com"
         }
     ],
     "require": {
