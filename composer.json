@@ -1,5 +1,6 @@
 {
     "name": "ko7ta/laravel5.8-lets-encrypt",
+    "version": "1.0.0",
     "description": "A Laravel package to easily generate SSL certificates using Let's Encrypt",
     "keywords": [
         "ko7ta",
