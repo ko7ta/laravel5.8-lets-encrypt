@@ -14,7 +14,7 @@ namespace Daanra\LaravelLetsEncrypt\Contracts;
 interface PathGenerator
 {
     // Should return the path of where the challenge should be stored.
-    public function getChallengePath(string $token): string;
+    public function getChallengePath(string $token, string $domain): string;
 
     // Should return the path of where the certificate should be stored.
     // Note that $filename is 'privkey.pem', 'fullchain.pem', 'chain.pem' or 'cert.pem'
