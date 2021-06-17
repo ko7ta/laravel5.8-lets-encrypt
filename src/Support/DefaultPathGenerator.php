@@ -6,13 +6,13 @@ use Daanra\LaravelLetsEncrypt\Contracts\PathGenerator;
 
 class DefaultPathGenerator implements PathGenerator
 {
-    public function getChallengePath(string $token): string
+    public function getChallengePath(string $token, string $domain): string
     {
-        return 'public/.well-known/acme-challenge/' . $token;
+        return $domain . '/.well-known/acme-challenge/' . $token;
     }
 
     public function getCertificatePath(string $domain, string $filename): string
     {
-        return 'letsencrypt/certificates/' . $domain . '/' . $filename;
+        return $domain . '/ssl/' . $filename;
     }
 }

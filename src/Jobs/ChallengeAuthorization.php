@@ -4,6 +4,7 @@ namespace Daanra\LaravelLetsEncrypt\Jobs;
 
 use AcmePhp\Core\Protocol\AuthorizationChallenge;
 use Daanra\LaravelLetsEncrypt\Facades\LetsEncrypt;
+use Daanra\LaravelLetsEncrypt\Models\LetsEncryptCertificate;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
@@ -17,9 +18,13 @@ class ChallengeAuthorization implements ShouldQueue
     /** @var AuthorizationChallenge */
     protected $challenge;
 
-    public function __construct(AuthorizationChallenge $httpChallenge)
+    /** @var LetsEncryptCertificate */
+    protected $certificate;
+
+    public function __construct(AuthorizationChallenge $httpChallenge, LetsEncryptCertificate $certificate)
     {
         $this->challenge = $httpChallenge;
+        $this->certificate = $certificate;
     }
 
     /**
@@ -32,6 +37,6 @@ class ChallengeAuthorization implements ShouldQueue
     {
         $client = LetsEncrypt::createClient();
         $client->challengeAuthorization($this->challenge);
-        CleanUpChallenge::dispatch($this->challenge);
+        CleanUpChallenge::dispatch($this->challenge, $this->certificate);
     }
 }

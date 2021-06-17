@@ -52,7 +52,7 @@ class RequestAuthorization implements ShouldQueue
      */
     protected function placeChallenge(AuthorizationChallenge $challenge): void
     {
-        $path = PathGeneratorFactory::create()->getChallengePath($challenge->getToken());
+        $path = PathGeneratorFactory::create()->getChallengePath($challenge->getToken(), $this->certificate->domain);
         $success = Storage::disk(config('lets_encrypt.challenge_disk'))->put($path, $challenge->getPayload());
 
         if ($success === false) {
@@ -67,9 +67,9 @@ class RequestAuthorization implements ShouldQueue
         $httpChallenge = $this->getHttpChallenge($challenges);
         $this->placeChallenge($httpChallenge);
         if ($this->sync) {
-            ChallengeAuthorization::dispatchNow($httpChallenge);
+            ChallengeAuthorization::dispatchNow($httpChallenge, $this->certificate);
         } else {
-            ChallengeAuthorization::dispatch($httpChallenge);
+            ChallengeAuthorization::dispatch($httpChallenge, $this->certificate);
         }
     }
 
